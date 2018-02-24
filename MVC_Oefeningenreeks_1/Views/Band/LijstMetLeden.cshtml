@@ -1,0 +1,49 @@
+﻿@using MyHobbies
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LijstMetLeden</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Band</th>
+                <th>Naam</th>
+                <th>Leeftijd</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                IBandStorage bandStorage = ViewBag.bandStorage;
+                IReadOnlyCollection<Band> bands = bandStorage.GetBands();
+                IReadOnlyCollection<Bandlid> bandleden;
+
+                foreach (Band band in bands)
+                {
+                    bandleden = band.GetBandleden();
+                    foreach (Bandlid bandlid in bandleden)
+                    {
+
+                        <tr>
+                            <td>@band.Naam <a name="@band.Naam"></a></td>
+                            <td>@bandlid.Naam</td>
+                            <td>@bandlid.Leeftijd</td>
+                            <td>@(bandlid.Levend ? "In leven" : "Overleden")</td>
+                        </tr>
+                    }
+
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿@using MyHobbies
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lijst</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Band</th>
+                <th>Jaar</th>
+                <th>Leden</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                IBandStorage bandStorage = ViewBag.bandStorage;
+                IReadOnlyCollection<Band> bands = bandStorage.GetBands();
+
+                foreach (Band band in bands)
+                {
+                    <tr>
+                        <td>@band.Naam <a name="@band.Naam"></a></td>
+                        <td>@band.Jaar</td>
+                        <td><a asp-controller="Band" asp-action="LijstMetLeden" asp-fragment="@band.Naam">Leden</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>
