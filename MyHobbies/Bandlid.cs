@@ -4,13 +4,13 @@ using System.Text;
 
 namespace MyHobbies
 {
-    enum Geslacht
+    public enum Geslacht
     {
         man,
         vrouw
     }
 
-    class Bandlid
+    public class Bandlid
     {
         public Bandlid(String naam, Geslacht geslacht, int geboortejaar, bool levend)
         {
