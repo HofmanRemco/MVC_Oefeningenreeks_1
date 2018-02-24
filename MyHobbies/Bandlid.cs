@@ -27,7 +27,7 @@ namespace MyHobbies
         {
             get
             {
-                return new DateTime().Year - Geboortejaar;
+                return DateTime.Now.Year - Geboortejaar;
             }
         }
         public bool Levend { get; set; }
